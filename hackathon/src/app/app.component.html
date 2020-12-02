@@ -1,0 +1,86 @@
+
+
+<form class="example-form">
+
+
+      <img class="resize" src="assets/images/hackathon.jpeg">
+      
+      <mat-form-field class="example-full-width1">
+        
+        <input type="text"
+               placeholder="Search"
+               aria-label="Number"
+               matInput
+               [formControl]="myControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of naveena"  [value]="option.id"  (click)="displaySeries(option.id,option.file)">
+            
+              
+                <td>{{option.id}}</td>
+             
+  
+           
+          </mat-option>
+        </mat-autocomplete>
+
+      
+      </mat-form-field>
+      
+  
+    
+
+      
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Patient Name</mat-label>
+    <input matInput  value="Sushi">
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Patient Address</mat-label>
+    <input matInput  value="Tadipatri,Andhrapradesh">
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Patient BIO</mat-label>
+    <input matInput  value="AGE:22,SEX:Female">
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>ScanType</mat-label>
+    <input matInput  value="MRI">
+  </mat-form-field>
+</form>
+
+<div class="image">
+  <ul>
+    <li class ="image1">
+      <div class="images">
+        Images
+        <div class="display1">
+          <a>
+            <img class="size" src="assets/images/mri.jpg">
+          </a>
+        </div>
+      </div>
+      </li>
+      </ul>
+      </div>
+   
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Result</mat-label>
+    <input matInput  value="Fail">
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Interpretation</mat-label>
+    <input matInput  value="none">
+  </mat-form-field>
+</form>
