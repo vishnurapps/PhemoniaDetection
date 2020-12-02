@@ -1,0 +1,80 @@
+<form class="example-form">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <img class="resize" src="assets/images/hackathon.jpeg">
+<form>
+  <mat-form-field class="example-full-width1">
+    <div class="search">
+      <input type="text" placeholder="Search" aria-label="Number" matInput [formControl]="myControl"
+        [matAutocomplete]="auto"   (keydown.enter)=onselectedsearch($event.target.value)   [(ngModel)] ="searchfile" >
+      <mat-autocomplete #auto="matAutocomplete"> 
+      </mat-autocomplete>
+    </div>
+
+  </mat-form-field>
+
+</form>
+ <div class="file">
+
+    <input class="button1" type="file"  (change)="onselectedfile($event)" [(ngModel)] ="filename"  ><br><br>
+    <button mat-raised-button color="primary"  class="button"  (click)="displayfile()" >Submit</button>
+   
+</div> 
+
+
+
+  <mat-form-field class="example-full-width" *ngFor="let option of naveena">
+    <mat-label>Patient Name</mat-label>
+    <input matInput value="{{option.name}}">
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width" *ngFor="let option of naveena">
+    <mat-label>Patient Address</mat-label>
+    <input matInput value="{{option.address}}">
+    <!-- <td> {{option.address}}</td> -->
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width" *ngFor="let option of naveena">
+    <mat-label>Patient BIO</mat-label>
+    <input matInput value=" {{option.bio}}">
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width" *ngFor="let option of naveena">
+    <mat-label>ScanType</mat-label>
+    <input matInput value=" {{option.scantype}}">
+
+  </mat-form-field>
+</form>
+
+<div class="image">
+  <ul>
+    <li class="image1">
+      <div class="images" *ngFor="let option of naveena">
+        Images
+        <div class="display1">
+          <a>
+            <img class="size" src="{{option.image}}">
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width" *ngFor="let option of naveena">
+    <mat-label>Result</mat-label>
+    <input matInput value="{{option.result}}">
+
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width" *ngFor="let option of naveena">
+    <mat-label>Interpretation</mat-label>
+    <input matInput value="{{option.interpretation}}">
+
+  </mat-form-field>
+</form>
