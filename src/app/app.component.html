@@ -6,7 +6,7 @@
   <mat-form-field class="example-full-width1">
     <div class="search">
       <input type="text" placeholder="Search" aria-label="Number" matInput [formControl]="myControl"
-        [matAutocomplete]="auto"   (keydown.enter)=onselectedsearch($event.target.value)   [(ngModel)] ="searchfile" >
+        [matAutocomplete]="auto"   (keydown.enter)=onselectedsearch($event)   [(ngModel)] ="searchfile" >
       <mat-autocomplete #auto="matAutocomplete"> 
       </mat-autocomplete>
     </div>

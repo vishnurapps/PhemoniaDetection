@@ -25,11 +25,11 @@ export class AppComponent {
   selectedfile: any;
   selectedsearch: any;
 
-  onselectedsearch(event: string) {
+  onselectedsearch(event: any) {
 
-    this.selectedsearch = event;
+    this.selectedsearch = <string>event.target.value;
 
-
+alert(this.selectedsearch)
     this.displaysearch()
   }
   searchname: any
@@ -114,22 +114,25 @@ export class AppComponent {
     //     "result": "pass",
     //     "interpretation": "none"
 
-    //   }
+    //   }git commit -m "initial commit"
+
     // ];
-    let header = new HttpHeaders();
-    let params1 = new HttpParams();
-    header.append('Content-type', 'application/json');
+    
+    let fromData= new FormData();
+    fromData.append('file',this.selectedfile)
     console.log("Study : ", this.selectedfile)
 
 
-    this.http.post("http://127.0.0.1:5000/sendimage", this.selectedfile, { headers: header })
+    this.http.post("http://127.0.0.1:5000/sendimage", fromData)
       .subscribe((result) => {
         console.warn("result", result)
       })
 
 
-    this.sleep(10000).then(() => {  
 
+    this.sleep(10000).then(() => {  
+      let header = new HttpHeaders();
+      header.append('Content-type','application/json');
       console.log("naveena")
     return this.http.get("http://127.0.0.1:5000/search", { headers: header }).subscribe((response: any) => {
 
