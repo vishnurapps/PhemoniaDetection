@@ -39,3 +39,7 @@ RUN pip3 install requests
 RUN pip3 install lib-platform
 
 EXPOSE 5011
+
+RUN apt install libgl1-mesa-glx
+
+WORKDIR /development
