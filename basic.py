@@ -4,10 +4,11 @@ from flask import flash
 import requests
 import os
 from werkzeug.utils import secure_filename
+from flask import jsonify
 
 UPLOAD_FOLDER = './uploads'
 SAVED_PATH='./data'
-ALLOWED_EXTENSIONS = {'dcm'}
+ALLOWED_EXTENSIONS = {'jpg'}
 
  
 app = Flask(__name__)
@@ -24,9 +25,27 @@ def login():
         if os.path.isdir(path):
             files = os.listdir(path)
             print(files)
-            return 'exists'
+            return jsonify(
+            patientid="001",
+            pathology="pathologydata",
+            studydate="10-12-20",
+            birthdate="30-1-90",
+            age="30",
+            sex="Male",
+            modality="CT",
+            image="C:\\Users\\V.Sreekanth Reddy\\Pictures\\Camera Roll\\clouds.jpg"
+            )
         else:
-            return 'Not exists'
+            return jsonify(
+            patientid="001",
+            pathology="pathologydata",
+            studydate="10-12-20",
+            birthdate="30-1-90",
+            age="30",
+            sex="Male",
+            modality="CT",
+            image="C:\\Users\\V.Sreekanth Reddy\\Pictures\\Camera Roll\\clouds.jpg"
+            )
 
  
 def allowed_file(filename):
@@ -50,7 +69,16 @@ def upload_file():
             #print(filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             #return redirect(url_for('upload_file', filename=filename))
-        return "success"
+        return jsonify(
+        patientid="001",
+        pathology="pathologydata",
+        studydate="10-12-20",
+        birthdate="30-1-90",
+        age="30",
+        sex="Male",
+        modality="CT",
+        image="C:\\Users\\V.Sreekanth Reddy\\Pictures\\Camera Roll\\clouds.jpg"
+    )
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=int("5011"), debug = True)
