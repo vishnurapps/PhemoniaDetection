@@ -7,6 +7,8 @@ import os
 from werkzeug.utils import secure_filename
 from flask import jsonify
 import pydicom
+from processdata import predict_disease
+import json
 
 UPLOAD_FOLDER = './uploads'
 SAVED_PATH='./data'
@@ -79,8 +81,11 @@ def upload_file():
             filename = secure_filename(file.filename)
             #print(filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            #return redirect(url_for('upload_file', filename=filename))
+            result = predict_disease('./uploads/'+filename)
+            jsonresult = json.loads(result)
+            print()
             info=pydicom.dcmread('./uploads/'+filename)
+            
             patientname = ''
             if("PatientName" in info):
                 pname = info.PatientName
@@ -110,16 +115,17 @@ def upload_file():
             if("Modality" in info):
                 modality=info.Modality
             print(modality)
-        return jsonify(
+        finalresult=jsonify(
         patientid=patientid,
-        pathology="pathologydata",
+        pathology=jsonresult['data']['disease'],
         studydate=studydate,
         birthdate=birthdate,
         age=age,
         sex=sex,
         modality=modality,
-        image="C:\\Users\\V.Sreekanth Reddy\\Pictures\\Camera Roll\\clouds.jpg"
+        image=jsonresult['data']['path']
     )
+    return finalresult
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=int("5011"), debug = True)

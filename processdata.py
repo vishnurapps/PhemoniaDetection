@@ -31,7 +31,7 @@ def predict_disease(img_path):
     model.to(device)
 
     img = Image.open("sample_pneumonia.jpg")
-    img.save("/tmp/sample.jpg")
+    #img.save("sample.jpg")
     img = test_tfms(img)
     result = model(img.unsqueeze(0)) 
     output = {'data': {'disease':result.item(),'path':'/tmp/sample.jpg'}}
