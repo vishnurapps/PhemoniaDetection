@@ -21,7 +21,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 @app.route('/search', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        name= request.values.get('patientname')
+        name= request.values.get('name')
         path=SAVED_PATH+'/'+name
         if os.path.isdir(path):
             files = os.listdir(path)
