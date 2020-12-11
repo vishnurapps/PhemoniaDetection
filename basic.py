@@ -14,15 +14,13 @@ ALLOWED_EXTENSIONS = {'dcm'}
 
  
 app = Flask(__name__)
-cors = CORS(app)
+CORS(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
  
 
 @app.route('/search', methods=['GET', 'POST'])
-@cross_origin()
 def login():
     if request.method == 'POST':
         name= request.values.get('name')
@@ -60,7 +58,6 @@ def allowed_file(filename):
  
 
 @app.route('/sendimage', methods=['GET', 'POST'])
-@cross_origin()
 def upload_file():
     if request.method == 'POST':
         if 'file' not in request.files:
