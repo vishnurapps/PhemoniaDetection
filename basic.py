@@ -28,7 +28,7 @@ cors = CORS(app, resources={
 
 @app.route('/search', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
+    if request.method == 'GET':
         name= request.values.get('name')
         path=SAVED_PATH+'/'+name
         if os.path.isdir(path):
