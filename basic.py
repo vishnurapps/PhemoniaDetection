@@ -18,6 +18,12 @@ CORS(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+cors = CORS(app, resources={
+    r"/*": {
+       "origins": "*"
+    }
+})
+
  
 
 @app.route('/search', methods=['GET', 'POST'])
