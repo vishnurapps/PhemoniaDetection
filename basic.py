@@ -35,6 +35,7 @@ def login():
             files = os.listdir(path)
             print(files)
             return jsonify(
+            name="naveena",
             patientid="001",
             pathology="pathologydata",
             studydate="10-12-20",
@@ -46,6 +47,7 @@ def login():
             )
         else:
             return jsonify(
+            name="pandu",
             patientid="001",
             pathology="pathologydata",
             studydate="10-12-20",
