@@ -5,10 +5,11 @@ import requests
 import os
 from werkzeug.utils import secure_filename
 from flask import jsonify
+import pydicom
 
 UPLOAD_FOLDER = './uploads'
 SAVED_PATH='./data'
-ALLOWED_EXTENSIONS = {'jpg'}
+ALLOWED_EXTENSIONS = {'dcm'}
 
  
 app = Flask(__name__)
@@ -69,14 +70,44 @@ def upload_file():
             #print(filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             #return redirect(url_for('upload_file', filename=filename))
+            info=pydicom.dcmread('./uploads/'+filename)
+            patientname = ''
+            if("PatientName" in info):
+                pname = info.PatientName
+                patientname = pname.family_name+ " " + pname.given_name
+            print('Name:', patientname)
+            patientid=''
+            if("PatientID" in info):
+                patientid=info.PatientID
+            print('Id:',patientid)
+            studydate=''
+            if("StudyDate" in info):
+                studydate=info.StudyDate
+            print('study date:',studydate)
+            birthdate=''
+            if("PatientBirthDate" in info):
+                birthdate=info.PatientBirthDate
+            print('DOB:',birthdate)
+            sex=''
+            if("PatientSex" in info):
+                sex=info.PatientSex
+            print(sex)
+            age=''
+            if("PatientAge" in info):
+                age=info.PatientAge
+            print(age)
+            modality=''
+            if("Modality" in info):
+                modality=info.Modality
+            print(modality)
         return jsonify(
-        patientid="001",
+        patientid=patientid,
         pathology="pathologydata",
-        studydate="10-12-20",
-        birthdate="30-1-90",
-        age="30",
-        sex="Male",
-        modality="CT",
+        studydate=studydate,
+        birthdate=birthdate,
+        age=age,
+        sex=sex,
+        modality=modality,
         image="C:\\Users\\V.Sreekanth Reddy\\Pictures\\Camera Roll\\clouds.jpg"
     )
 
