@@ -126,6 +126,10 @@ def upload_file():
         image=jsonresult['data']['path']
     )
     return finalresult
+@app.route('/patients', methods=['GET', 'POST'])
+def patients():
+    patient_names = [item.split(".")[0] for item in os.listdir("data")]
+    return jsonify({"names":patient_names})
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=int("5011"), debug = True)
