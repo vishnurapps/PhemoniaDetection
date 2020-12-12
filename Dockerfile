@@ -10,5 +10,6 @@ RUN pip3 install -r requirements.txt
 RUN mkdir uploads
 RUN mkdir data
 RUN mkdir images
+RUN cat model?? > fasterrcnn_resnet50_fpn.pth
 EXPOSE 5011
 CMD python3 basic.py
