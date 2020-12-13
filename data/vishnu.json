@@ -1,1 +1,1 @@
-{"name": "vishnu", "patientid": "001", "pathology": "pathologydata", "studydate": "10-12-20", "birthdate": "30-1-90", "age": 30, "sex": "Male", "modality": "CT", "image": "C:\\Users\\V.Sreekanth Reddy\\Pictures\\Camera Roll\\clouds.jpg"}
+{"name": "vishnu", "patientid": "001", "pathology": "pathologydata", "studydate": "10-12-20", "birthdate": "30-1-90", "age": 30, "sex": "Male", "modality": "CT", "image": "images/vishnu.jpg", "statuscode": 200}

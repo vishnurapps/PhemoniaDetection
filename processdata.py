@@ -13,7 +13,6 @@ import numpy as np
 import cv2
 import os
 import re
-import albumentations as A
 import torch
 import torchvision
 
@@ -23,7 +22,6 @@ from torchvision.models.detection.rpn import AnchorGenerator
 from torch.utils.data import DataLoader, Dataset
 from torch.utils.data.sampler import SequentialSampler
 from PIL import Image
-from albumentations.pytorch.transforms import ToTensorV2
 from matplotlib import pyplot as plt
 from tqdm import tqdm
 import pydicom as dicom

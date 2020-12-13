@@ -112,7 +112,7 @@ def process_data():
         modality = info.Modality
     print(modality)
     finalresult = {
-        "patientname": patientname,
+        "name": patientname,
         "patientid": patientid,
         "pathology": jsonresult['data']['disease'],
         "studydate": studydate,
@@ -176,7 +176,7 @@ def upload_file():
                 modality = info.Modality
             print(modality)
         finalresult = {
-            "patientname": patientname,
+            "name": patientname,
             "patientid": patientid,
             "pathology": jsonresult['data']['disease'],
             "studydate": studydate,
