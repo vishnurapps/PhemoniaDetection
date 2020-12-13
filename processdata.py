@@ -103,7 +103,7 @@ def predict_disease(img_path):
         cpu_device = torch.device("cpu")
 
         outputs = model(image)
-        
+        print(outputs)
         outputs = [{k: v.to(cpu_device) for k, v in t.items()} for t in outputs]
         if len(outputs[0]['boxes']) != 0:
             for counter in range(len(outputs[0]['boxes'])):
@@ -137,7 +137,9 @@ def predict_disease(img_path):
                 'patientId': test_images.split('.')[0],
                 'PredictionString': None
             }
-        prediction = "suspect" if len(outputs[0]['boxes']) != 0  else "no"
+        fr = outputs[0]['scores'].data.cpu().numpy()
+        print(np.amax(fr))
+        prediction = "suspect" if np.amax(fr) > detection_threshold  else "healthy"
     output = {'data': {'disease':prediction,'path':f"images/{test_images}"}}
     return json.dumps(output)
 

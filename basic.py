@@ -32,32 +32,15 @@ cors = CORS(app, resources={
 def login():
     if request.method == 'GET':
         name= request.values.get('name')
-        path=SAVED_PATH+'/'+name
-        if os.path.isdir(path):
-            files = os.listdir(path)
-            print(files)
-            return jsonify(
-            name="naveena",
-            patientid="001",
-            pathology="pathologydata",
-            studydate="10-12-20",
-            birthdate="30-1-90",
-            age="30",
-            sex="Male",
-            modality="CT",
-            image="C:\\Users\\V.Sreekanth Reddy\\Pictures\\Camera Roll\\clouds.jpg"
-            )
+        path=f"./data/{name}.json"
+        if os.path.isfile(path):
+            with open(path) as f:
+                d = json.load(f)
+                print(d)
+            return jsonify(d)
         else:
             return jsonify(
-            name="pandu",
-            patientid="001",
-            pathology="pathologydata",
-            studydate="10-12-20",
-            birthdate="30-1-90",
-            age="30",
-            sex="Male",
-            modality="CT",
-            image="C:\\Users\\V.Sreekanth Reddy\\Pictures\\Camera Roll\\clouds.jpg"
+            statuscode=404
             )
 
  
