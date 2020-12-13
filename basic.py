@@ -10,6 +10,7 @@ import pydicom
 from processdata import predict_disease
 import json
 import glob
+import base64
 
 UPLOAD_FOLDER = './uploads'
 SAVED_PATH = './data'
@@ -175,6 +176,8 @@ def upload_file():
             if("Modality" in info):
                 modality = info.Modality
             print(modality)
+            with open(jsonresult['data']['path'], "rb") as image_file:
+                encoded_string = base64.b64encode(image_file.read())
         finalresult = {
             "name": patientname,
             "patientid": patientid,
@@ -184,7 +187,7 @@ def upload_file():
             "age": age,
             "sex": sex,
             "modality": modality,
-            "image": jsonresult['data']['path'],
+            "image": encoded_string.decode("ascii"),
             "statuscode": 200}
         with open(f"./data/{patientname}.json", "w") as outfile:
             json.dump(finalresult, outfile)
