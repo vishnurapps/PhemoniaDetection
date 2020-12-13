@@ -115,17 +115,20 @@ def upload_file():
             if("Modality" in info):
                 modality=info.Modality
             print(modality)
-        finalresult=jsonify(
-        patientid=patientid,
-        pathology=jsonresult['data']['disease'],
-        studydate=studydate,
-        birthdate=birthdate,
-        age=age,
-        sex=sex,
-        modality=modality,
-        image=jsonresult['data']['path']
-    )
-    return finalresult
+        finalresult={
+        "patientname":patientname,
+        "patientid":patientid,
+        "pathology":jsonresult['data']['disease'],
+        "studydate":studydate,
+        "birthdate":birthdate,
+        "age":age,
+        "sex":sex,
+        "modality":modality,
+        "image":jsonresult['data']['path'],
+        "statuscode":200}
+        with open(f"./data/{patientname}.json", "w") as outfile:  
+            json.dump(finalresult, outfile)
+    return jsonify(finalresult)
 @app.route('/patients', methods=['GET', 'POST'])
 def patients():
     patient_names = [item.split(".")[0] for item in os.listdir("data")]
