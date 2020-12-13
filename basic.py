@@ -77,7 +77,7 @@ def process_data():
     folder_path = image_path + '/'
     uuid = image_path.split('/')[-1]
     print('The uuid is ', uuid)
-    for dicom in get_dcm_files('./data/' + folder_path):
+    for dicom in get_dcm_files('/tmp/data/' + folder_path):
         dcm_full_path = dicom
     dcm_name = dcm_full_path.split('/')[-1]
     print(dcm_full_path)
