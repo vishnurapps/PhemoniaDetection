@@ -73,8 +73,11 @@ def return_latest_file():
 
 @app.route('/ehl', methods=['GET', 'POST'])
 def process_data():
+    print("hit came to ehl endpoint")
     image_path = str(request.args.get('imageUrl'))
+    print("image_path is ", image_path)
     folder_path = image_path + '/'
+    print("folder_path is ", folder_path)
     uuid = image_path.split('/')[-1]
     print('The uuid is ', uuid)
     for dicom in get_dcm_files('/tmp/data/' + folder_path):
