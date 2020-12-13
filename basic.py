@@ -84,6 +84,8 @@ def process_data():
         dcm_full_path = dicom
     dcm_name = dcm_full_path.split('/')[-1]
     print(dcm_full_path)
+    result = predict_disease(dcm_full_path)
+    jsonresult = json.loads(result)
     info = pydicom.dcmread(dcm_full_path)
 
     patientname = ''
@@ -115,6 +117,8 @@ def process_data():
     if("Modality" in info):
         modality = info.Modality
     print(modality)
+    with open(jsonresult['data']['path'], "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read())
     finalresult = {
         "name": patientname,
         "patientid": patientid,
@@ -124,7 +128,7 @@ def process_data():
         "age": age,
         "sex": sex,
         "modality": modality,
-        "image": jsonresult['data']['path'],
+        "image": encoded_string.decode("ascii"),
         "statuscode": 200}
     with open(f"./data/{patientname}.json", "w") as outfile:
         json.dump(finalresult, outfile)
