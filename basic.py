@@ -11,6 +11,8 @@ from processdata import predict_disease
 import json
 import glob
 import base64
+from os import listdir
+from os.path import isfile, join
 
 UPLOAD_FOLDER = './uploads'
 SAVED_PATH = './data'
