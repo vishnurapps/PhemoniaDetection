@@ -29,11 +29,37 @@ cors = CORS(app, resources={
 })
 
 
+# @app.route('/search', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'GET':
+#         name = request.values.get('name')
+#         path = f"./data/{name}.json"
+#         if os.path.isfile(path):
+#             with open(path) as f:
+#                 d = json.load(f)
+#                 print(d)
+#             return jsonify(d)
+#         else:
+#             return jsonify(
+#                 statuscode=404
+#             )
 @app.route('/search', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         name = request.values.get('name')
-        path = f"./data/{name}.json"
+        #list all files
+        onlyfiles = [f for f in listdir("data") if isfile(join("data", f))]
+        print(onlyfiles)
+        #do partial match
+        filename=""
+        for files in onlyfiles:
+            print(files[0:-5])
+            print(files.split(" ")[0])
+            if(files.split(" ")[0]==name or files[0:-5]==name):
+                filename = files[:0-5]
+        #make new file name
+        path = f"./data/{filename}.json"
+        print(path)
         if os.path.isfile(path):
             with open(path) as f:
                 d = json.load(f)
