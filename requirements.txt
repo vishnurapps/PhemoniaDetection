@@ -4,9 +4,7 @@ Werkzeug==0.14.1
 pydicom==2.1.2
 tqdm==4.26.0
 matplotlib==2.2.3
-torch==1.6.0+cpu
 numpy==1.15.1
-torchvision==0.7.0+cpu
 requests==2.19.1
 Flask==1.0.2
 pandas==0.23.4
